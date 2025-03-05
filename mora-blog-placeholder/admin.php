@@ -2,12 +2,14 @@
 
 include 'includes/header.php';
 
+// ajout d'une catégorie
 if ( isset($_POST['category_name']) ) {
     $addCategory = $db->prepare("INSERT INTO category (name) VALUES (:name)");
     $addCategory->execute(['name' => $_POST['category_name']]);
     header('Location: admin.php');
 }
 
+// ajout d'un article
 if ( isset($_POST['post_title']) ) {
     $addPost = $db->prepare("INSERT INTO post (title, text, publishedAt) VALUES (:title, :text, :publishedAt)");
     $addPost->execute([
